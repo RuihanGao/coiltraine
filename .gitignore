@@ -102,3 +102,16 @@ ENV/
 
 # pycharm
 .idea
+
+# RH
+# data
+/data
+
+# big loading file
+.npy
+
+# checkpoints
+.pth
+
+# torch
+torch-1.0.0-cp35-cp35m-linux_x86_64.whl

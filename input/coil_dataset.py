@@ -71,10 +71,11 @@ class CoILDataset(Dataset):
         if self.preload_name is not None and os.path.exists(
                 os.path.join('_preloads', self.preload_name + '.npy')):
             print(" Loading from NPY ")
+            print("preload_name", self.preload_name)
             self.sensor_data_names, self.measurements = np.load(
-                os.path.join('_preloads', self.preload_name + '.npy'))
-            print(self.sensor_data_names)
+                os.path.join('_preloads', self.preload_name + '.npy'), allow_pickle=True)
         else:
+            print("enter else")
             self.sensor_data_names, self.measurements = self._pre_load_image_folders(root_dir)
 
 
@@ -246,7 +247,8 @@ class CoILDataset(Dataset):
 
                 if self.is_measurement_partof_experiment(final_measurement):
                     float_dicts.append(final_measurement)
-                    rgb = 'CentralRGB_' + data_point_number + '.png'
+                    # rgb = 'CentralRGB_' + data_point_number + '.png'
+                    rgb = 'CameraRGB_' + data_point_number + '.png'
                     sensor_data_names.append(os.path.join(episode.split('/')[-1], rgb))
                     count_added_measurements += 1
 
@@ -261,7 +263,8 @@ class CoILDataset(Dataset):
 
                 if self.is_measurement_partof_experiment(final_measurement):
                     float_dicts.append(final_measurement)
-                    rgb = 'LeftRGB_' + data_point_number + '.png'
+                    # rgb = 'LeftRGB_' + data_point_number + '.png'
+                    rgb = 'LeftAugmentationCameraRGB_' + data_point_number + '.png'
                     sensor_data_names.append(os.path.join(episode.split('/')[-1], rgb))
                     count_added_measurements += 1
 
@@ -273,7 +276,8 @@ class CoILDataset(Dataset):
 
                 if self.is_measurement_partof_experiment(final_measurement):
                     float_dicts.append(final_measurement)
-                    rgb = 'RightRGB_' + data_point_number + '.png'
+                    # rgb = 'RightRGB_' + data_point_number + '.png'
+                    rgb = 'RightAugmentationCameraRGB_' + data_point_number + '.png'
                     sensor_data_names.append(os.path.join(episode.split('/')[-1], rgb))
                     count_added_measurements += 1
 

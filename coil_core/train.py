@@ -112,6 +112,7 @@ def execute(gpu, exp_batch, exp_alias, suppress_output=True, number_of_workers=1
             loss_window = []
 
         print ("Before the loss")
+        torch.backends.cudnn.benchmark = False
 
         criterion = Loss(g_conf.LOSS_FUNCTION)
 
