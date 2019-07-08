@@ -73,6 +73,7 @@ class CoILBaseline(AutonomousAgent):
         self._expand_command_front = 5
         self._expand_command_back = 3
         self.track = Track.CAMERAS
+        # self.track = Track.ALL_SENSORS_HDMAP_WAYPOINTS
 
     def sensors(self):
         sensors = [{'type': 'sensor.camera.rgb',
@@ -95,6 +96,10 @@ class CoILBaseline(AutonomousAgent):
 
     def run_step(self, input_data, timestamp):
         # Get the current directions for following the route
+
+        # RH: print more agent info
+        # for key, value in input_data.items():
+        #     print("input_data key ", key, value)
         directions = self._get_current_direction(input_data['GPS'][1])
         logging.debug("Directions {}".format(directions))
 
